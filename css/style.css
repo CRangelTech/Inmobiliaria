@@ -77,8 +77,8 @@ body {
 /* Botón modo oscuro/claro */
 .theme-toggle {
   position: fixed;
-  top: 24px;
-  right: 24px;
+  bottom: 24px;
+  left: 24px;
   z-index: 1001;
   background: var(--color-card);
   border: none;
@@ -617,10 +617,15 @@ body {
   .timeline-content {
     padding: 0.7em 0.7em;
   }
-  .back-to-top, .theme-toggle {
+  .back-to-top {
     right: 12px;
     width: 40px;
     height: 40px;
     font-size: 1.3rem;
+  }
+  .theme-toggle {
+    left: 12px;
+    width: 40px;
+    height: 40px;
   }
 }
