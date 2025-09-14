@@ -106,7 +106,16 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Descargar PDF (simulado)
+// Descargar PDF
 document.getElementById('download-pdf').addEventListener('click', () => {
-  alert('Funcionalidad de descarga de PDF próximamente.');
+  // Crear un enlace temporal para descargar el PDF
+  const link = document.createElement('a');
+  link.href = 'assets/docs/LocalEnRenta.pdf';
+  link.download = 'LocalEnRenta.pdf'; // Nombre del archivo al descargar
+  link.target = '_blank'; // Abrir en nueva pestaña como respaldo
+  
+  // Añadir el enlace al DOM, hacer clic y removerlo
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 });
