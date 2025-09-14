@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Local en renta CDMX, Coyoacan, avenida de los paches">
+  <title>Local en renta</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/icons/favicon.png" type="image/svg+xml">
+</head>
+<body>
+  <!-- Loader -->
+  <div id="loader" class="loader">
+    <div class="loader-inner"></div>
+    <span class="loader-text">Cargando...</span>
+  </div>
+
+  <!-- Botón modo oscuro/claro -->
+  <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo claro/oscuro">
+    <span class="icon-moon"></span>
+    <span class="icon-sun"></span>
+  </button>
+
+  <!-- Botón volver arriba -->
+  <button id="back-to-top" class="back-to-top" aria-label="Volver arriba">
+    <span>&uarr;</span>
+  </button>
+
+  <header class="main-header parallax">
+    <div class="header-content">
+      <h1>Un local ideal para tu negocio</h1>
+      <p>Renta un espacio que eleva tu negocio al siguiente nivel</p>
+      <a href="#contacto" class="btn-primary">Contactame</a>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#caracteristicas">Características</a></li>
+      <li><a href="#video">Recorrido</a></li>
+      <li><a href="#requisitos">Requisitos</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#precio">Precio</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Sobre la propiedad -->
+    <section id="sobre" class="section sobre">
+      <div class="container">
+        <h2>Sobre la propiedad</h2>
+        <p class="desc">Pon tu marca frente a todos: este local comercial de 21 m² está justo sobre avenida, con excelente visibilidad y fácil acceso para clientes.</p>
+        <img src="assets\img\20250913_113336.jpg" alt="Vista del espacio en renta" class="img-sobre">
+      </div>
+    </section>
+
+    <!-- Características -->
+    <section id="caracteristicas" class="section caracteristicas">
+      <div class="container">
+        <h2>Características</h2>
+        <ul class="features-list">
+          <li><img src="assets/icons/area.svg" alt="Área"> 21m² de área</li>
+          <li><img src="assets/icons/avenida.png" alt="Estacionamiento"> Sobre avenida</li>
+          <li><img src="assets/icons/train.png" alt="WiFi"> Cerca del Metrobús Cafetales</li>
+          <li><img src="assets/icons/agua.png" alt="Seguridad"> Servicio de Agua</li>
+          <li><img src="assets/icons/flash.png" alt="Salas"> Servicio de energía eléctrica</li>
+          <li><img src="assets/icons/apreton-de-manos.png" alt="Salas"> Trato directo</li>
+          <li><img src="assets/icons/contrato.png" alt="Salas"> Contrato por un año o seis meses, tú decides</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Video recorrido -->
+    <section id="video" class="section video">
+      <div class="container">
+        <h2>Recorrido virtual</h2>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/gcZC54vWmME?si=N3Ho9934da29tTgf" title="Recorrido del espacio en renta" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Requisitos -->
+    <section id="requisitos" class="section requisitos">
+      <div class="container">
+        <h2>Requisitos</h2>
+        <div class="requisitos-list">
+          <div class="requisito-item">
+            <img src="assets/img/INE.png" alt="Identificación oficial vigente">
+            <div>
+              <h3>Identificación oficial vigente</h3>
+              <p>INE o pasaporte vigente del solicitante.</p>
+            </div>
+          </div>
+          <div class="requisito-item">
+            <img src="assets/img/recibo.png" alt="Comprobante de domicilio">
+            <div>
+              <h3>Comprobante de domicilio</h3>
+              <p>Un documento que acredite tu domicilio actual (no mayor a 3 meses). Si rentas donde vives, deberas agregar copia de tu contrato de arrendamiento vigente.</p>
+            </div>
+          </div>
+          <div class="requisito-item">
+            <img src="assets/img/CURP.png" alt="CURP">
+            <div>
+              <h3>CURP</h3>
+              <p>Clave Única de Registro de Población actualizada.</p>
+            </div>
+          </div>
+          <div class="requisito-item">
+            <img src="assets/img/SAT.png" alt="Constancia de situación fiscal">
+            <div>
+              <h3>Constancia de situación fiscal</h3>
+              <p>Constancia de situación fiscal actualizada (SAT).</p>
+            </div>
+          </div>
+          <div class="requisito-item">
+            <img src="assets/img/aval.png" alt="Aval o fiador solidario">
+            <div>
+              <h3>Aval o fiador solidario</h3>
+              <p>Con domicilio en la CDMX y propietario de un bien inmueble libre de gravamen, identificado con INE y comprobante de domicilio</p>
+            </div>
+          </div>
+          <div class="requisito-item">
+            <img src="assets/img/antecedentes-penales.png" alt="No antecedentes penales">
+            <div>
+              <h3>No contar con antecedentes penales</h3>
+              <p>Ni el arrendatario potencial ni su aval deberán contar con antecedentes penales de ningún tipo. Y no se aceptarán personas registradas en listas oficiales de agresores de cualquier índole. Asimismo, el arrendatario potencial y su aval no deberán estar en Buró de Crédito.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Ubicación -->
+    <section id="ubicacion" class="section ubicacion">
+      <div class="container">
+        <h2>Ubicación</h2>
+        <div class="map-wrapper">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235.30064961180517!2d-99.11601434461156!3d19.334032220411352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce01e47872384f%3A0xa94169976900ead3!2sAv%20de%20los%20Apaches%20299%2C%20Culhuacan%20CTM%20V%2C%20Coyoac%C3%A1n%2C%2004260%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1757870938958!5m2!1ses!2smx" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <button id="download-pdf" class="btn-secondary">Descargar información en PDF</button>
+      </div>
+    </section>
+
+    <section id="precio" class="section caracteristicas">
+      <div class="container">
+        <h2>Precio</h2>
+        <ul class="features-list">
+          <li><img src="assets/icons/pago.png" alt="Área"> RENTA: $8000</li>
+          <li><img src="assets/icons/donacion.png" alt="Estacionamiento"> DEPOSITO: $8000</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <div class="contacto-list">
+          <a href="https://wa.me/5215639672481" target="_blank" class="contact-btn whatsapp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"> WhatsApp</a>
+          <a href="mailto:carlosrangel.tech+arrendamiento@gmail.com" class="contact-btn email"><img src="assets/icons/email.svg" alt="Email"> carlosrangel.tech+arrendamiento@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025  CRangelTech. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
