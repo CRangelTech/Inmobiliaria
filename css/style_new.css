@@ -33,7 +33,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background: linear-gradient(180deg, var(--color-bg) 60%, var(--color-secondary) 100%);
+  background: linear-gradient(45deg, var(--color-bg) 100%, var(--color-secondary) 100%);
   color: var(--color-text);
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   margin: 0;
@@ -151,7 +151,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, var(--color-primary) 60%, var(--color-bg) 100%);
+  background: linear-gradient(120deg, var(--color-primary) 100%, var(--color-bg) 50%);
   box-shadow: var(--shadow-neumorph);
   position: relative;
   overflow: hidden;

@@ -13,6 +13,7 @@
   --color-card-light: #fff;
   --shadow-neumorph: 8px 8px 24px #14171c, -8px -8px 24px #1c2027;
   --shadow-neumorph-light: 8px 8px 24px #e0e0e0, -8px -8px 24px #fff;
+  --shadow-gold: 8px 8px 24px rgba(255, 215, 0, 0.3), -8px -8px 24px rgba(255, 193, 7, 0.2);
   --transition: 0.4s cubic-bezier(.77,0,.18,1);
 }
 [data-theme="light"] {
@@ -27,6 +28,7 @@
   --color-card-light: #23272f;
   --shadow-neumorph: 8px 8px 24px #e0e0e0, -8px -8px 24px #fff;
   --shadow-neumorph-light: 8px 8px 24px #14171c, -8px -8px 24px #1c2027;
+  --shadow-gold: 8px 8px 24px rgba(255, 215, 0, 0.4), -8px -8px 24px rgba(255, 193, 7, 0.3);
 }
 
 html {
@@ -159,7 +161,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(120deg, var(--color-primary) 60%, var(--color-bg) 100%);
+  background: linear-gradient(180deg, var(--color-primary) 60%, var(--color-bg) 120%);
   box-shadow: var(--shadow-neumorph);
   position: relative;
   overflow: hidden;
@@ -188,7 +190,7 @@ body {
   padding: 0.8em 2.2em;
   font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-gold);
   cursor: pointer;
   transition: background var(--transition), transform var(--transition);
   text-decoration: none;
@@ -196,6 +198,162 @@ body {
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.04);
   background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+}
+
+/* Animación de partículas en el header */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 193, 7, 0.4) 70%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+}
+
+.particle:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  left: 20%;
+  animation-delay: -1s;
+  animation-duration: 8s;
+}
+
+.particle:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  left: 30%;
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.particle:nth-child(4) {
+  width: 10px;
+  height: 10px;
+  left: 40%;
+  animation-delay: -3s;
+  animation-duration: 9s;
+}
+
+.particle:nth-child(5) {
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  animation-delay: -4s;
+  animation-duration: 6s;
+}
+
+.particle:nth-child(6) {
+  width: 8px;
+  height: 8px;
+  left: 60%;
+  animation-delay: -5s;
+  animation-duration: 8s;
+}
+
+.particle:nth-child(7) {
+  width: 12px;
+  height: 12px;
+  left: 70%;
+  animation-delay: -1.5s;
+  animation-duration: 7s;
+}
+
+.particle:nth-child(8) {
+  width: 6px;
+  height: 6px;
+  left: 80%;
+  animation-delay: -2.5s;
+  animation-duration: 9s;
+}
+
+.particle:nth-child(9) {
+  width: 10px;
+  height: 10px;
+  left: 90%;
+  animation-delay: -3.5s;
+  animation-duration: 6s;
+}
+
+.particle:nth-child(10) {
+  width: 16px;
+  height: 16px;
+  left: 15%;
+  animation-delay: -4.5s;
+  animation-duration: 8s;
+}
+
+.particle:nth-child(11) {
+  width: 8px;
+  height: 8px;
+  left: 25%;
+  animation-delay: -0.5s;
+  animation-duration: 7s;
+}
+
+.particle:nth-child(12) {
+  width: 12px;
+  height: 12px;
+  left: 35%;
+  animation-delay: -1.8s;
+  animation-duration: 9s;
+}
+
+.particle:nth-child(13) {
+  width: 6px;
+  height: 6px;
+  left: 45%;
+  animation-delay: -2.8s;
+  animation-duration: 6s;
+}
+
+.particle:nth-child(14) {
+  width: 14px;
+  height: 14px;
+  left: 55%;
+  animation-delay: -3.8s;
+  animation-duration: 8s;
+}
+
+.particle:nth-child(15) {
+  width: 10px;
+  height: 10px;
+  left: 75%;
+  animation-delay: -4.8s;
+  animation-duration: 7s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* --- Navbar adaptativa --- */
@@ -466,7 +624,6 @@ body {
   max-width: 180px;
   border-radius: 12px;
   margin-bottom: 1em;
-  box-shadow: var(--shadow-neumorph-light);
 }
 .github-link {
   display: inline-block;
@@ -531,7 +688,31 @@ body {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: var(--shadow-neumorph);
+  margin-bottom: 1em;
+}
+
+.direccion-texto {
+  text-align: center;
   margin-bottom: 1.5em;
+}
+
+.direccion {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  background: var(--color-card);
+  padding: 1em 1.5em;
+  border-radius: 15px;
+  box-shadow: var(--shadow-neumorph);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.direccion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(58, 123, 213, 0.15);
 }
 .btn-secondary {
   background: var(--color-card);
@@ -588,6 +769,37 @@ body {
   background: var(--color-primary);
   color: #fff;
   transform: translateY(-2px);
+}
+
+/* Estilo específico para el botón de agendar cita */
+.contact-btn.calendar {
+  background: linear-gradient(135deg, var(--color-accent), #ff6b35);
+  color: #fff;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn.calendar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.contact-btn.calendar:hover::before {
+  left: 100%;
+}
+
+.contact-btn.calendar:hover {
+  background: linear-gradient(135deg, #ff6b35, var(--color-accent));
+  color: #fff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(249, 178, 52, 0.4);
 }
 
 /* Footer */
@@ -663,6 +875,11 @@ body {
   .timeline {
     padding-left: 25px;
   }
+  .direccion {
+    font-size: 1rem;
+    padding: 0.8em 1em;
+    line-height: 1.3;
+  }
   .contacto-list {
     gap: 1em;
     margin-top: 1.5em;
@@ -673,6 +890,13 @@ body {
     padding: 1.2em 1.5em;
     font-size: 1.1rem;
     border-radius: 25px;
+  }
+  .contact-btn.calendar {
+    background: linear-gradient(135deg, var(--color-accent), #ff6b35);
+    font-weight: 700;
+  }
+  .contact-btn.calendar:hover {
+    transform: translateY(-2px) scale(1.02);
   }
   .contact-btn img {
     width: 24px;
@@ -724,6 +948,13 @@ body {
     font-size: 0.9rem;
   }
   
+  .direccion {
+    font-size: 0.9rem;
+    padding: 0.7em 0.8em;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+  }
+  
   .contacto-list {
     gap: 0.8em;
     margin-top: 1em;
@@ -733,9 +964,15 @@ body {
     width: 100%;
     max-width: 100%;
     padding: 1em;
-    font-size: .6rem;
+    font-size: 1rem;
     border-radius: 20px;
     min-height: 50px;
+  }
+  
+  .contact-btn.calendar {
+    background: linear-gradient(135deg, var(--color-accent), #ff6b35);
+    font-weight: 700;
+    min-height: 55px;
   }
   
   .contact-btn img {
