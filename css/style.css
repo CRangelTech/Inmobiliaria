@@ -1,34 +1,18 @@
 /* =====================
-   Variables y modo oscuro/claro
+   Variables CSS
 ===================== */
 :root {
-  --color-bg: #181c23;
-  --color-bg-light: #f5f6fa;
-  --color-primary: #3a7bd5;
-  --color-secondary: #00d2ff;
-  --color-accent: #f9b234;
-  --color-text: #eaeaea;
-  --color-text-dark: #232323;
-  --color-card: #23272f;
-  --color-card-light: #fff;
-  --shadow-neumorph: 8px 8px 24px #14171c, -8px -8px 24px #1c2027;
-  --shadow-neumorph-light: 8px 8px 24px #e0e0e0, -8px -8px 24px #fff;
-  --shadow-gold: 8px 8px 24px rgba(255, 215, 0, 0.3), -8px -8px 24px rgba(255, 193, 7, 0.2);
+  --color-bg: #F8FAFC;
+  --color-primary: #1E40AF;
+  --color-secondary: #3B82F6;
+  --color-accent: #F59E0B;
+  --color-text: #1F2937;
+  --color-text-light: #6B7280;
+  --color-card: #FFFFFF;
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-accent: 0 10px 25px rgba(245, 158, 11, 0.25);
   --transition: 0.4s cubic-bezier(.77,0,.18,1);
-}
-[data-theme="light"] {
-  --color-bg: #f5f6fa;
-  --color-bg-light: #181c23;
-  --color-primary: #3a7bd5;
-  --color-secondary: #00d2ff;
-  --color-accent: #f9b234;
-  --color-text: #232323;
-  --color-text-dark: #eaeaea;
-  --color-card: #fff;
-  --color-card-light: #23272f;
-  --shadow-neumorph: 8px 8px 24px #e0e0e0, -8px -8px 24px #fff;
-  --shadow-neumorph-light: 8px 8px 24px #14171c, -8px -8px 24px #1c2027;
-  --shadow-gold: 8px 8px 24px rgba(255, 215, 0, 0.4), -8px -8px 24px rgba(255, 193, 7, 0.3);
 }
 
 html {
@@ -36,13 +20,12 @@ html {
   overflow-x: hidden;
 }
 body {
-  background: linear-gradient(180deg, var(--color-bg) 60%, var(--color-secondary) 100%);
+  background: linear-gradient(180deg, var(--color-bg) 0%, #E0E7FF 100%);
   color: var(--color-text);
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  transition: background var(--transition), color var(--transition);
   overflow-x: hidden;
   width: 100%;
   box-sizing: border-box;
@@ -63,14 +46,18 @@ body {
   align-items: center;
   justify-content: center;
   transition: opacity 0.5s;
+  will-change: opacity;
+  contain: layout style paint;
 }
 .loader-inner {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-md);
   animation: loader-spin 1.2s linear infinite;
+  will-change: transform;
+  contain: layout style paint;
 }
 @keyframes loader-spin {
   0% { transform: rotate(0deg) scale(1); }
@@ -82,50 +69,6 @@ body {
   font-size: 1.2rem;
   color: var(--color-accent);
   letter-spacing: 2px;
-}
-
-/* Botón modo oscuro/claro */
-.theme-toggle {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 1001;
-  background: var(--color-card);
-  border: none;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  box-shadow: var(--shadow-neumorph);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background var(--transition), box-shadow var(--transition);
-  overflow: hidden;
-}
-.theme-toggle .icon-moon,
-.theme-toggle .icon-sun {
-  width: 24px;
-  height: 24px;
-  display: block;
-  transition: opacity var(--transition), transform var(--transition);
-}
-.theme-toggle .icon-moon {
-  background: url('../assets/icons/moon.svg') center/contain no-repeat;
-  opacity: 1;
-}
-.theme-toggle .icon-sun {
-  background: url('../assets/icons/sun.svg') center/contain no-repeat;
-  opacity: 0;
-  position: absolute;
-}
-[data-theme="light"] .theme-toggle .icon-moon {
-  opacity: 0;
-  transform: scale(0.7) rotate(-30deg);
-}
-[data-theme="light"] .theme-toggle .icon-sun {
-  opacity: 1;
-  transform: scale(1.1) rotate(15deg);
 }
 
 /* Botón volver arriba */
@@ -140,7 +83,7 @@ body {
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,11 +91,185 @@ body {
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s, background var(--transition);
+  transition: opacity 0.4s, transform 0.3s;
+  will-change: opacity, transform;
+  contain: layout style paint;
 }
 .back-to-top.show {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* Botones flotantes de acción */
+.floating-actions {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-end;
+  contain: layout style;
+}
+
+.floating-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+.floating-btn svg {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-btn:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.floating-btn:active {
+  transform: scale(1.05);
+}
+
+.floating-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Botón WhatsApp */
+.floating-whatsapp {
+  background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+  color: #FFFFFF;
+}
+
+.floating-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.floating-whatsapp:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.floating-whatsapp:hover {
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4), 0 4px 10px rgba(37, 211, 102, 0.2);
+}
+
+/* Botón Citas */
+.floating-appointment {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #FBBF24 100%);
+  color: #FFFFFF;
+}
+
+.floating-appointment::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.floating-appointment:hover::before {
+  width: 100%;
+  height: 100%;
+}
+
+.floating-appointment:hover {
+  box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4), 0 4px 10px rgba(245, 158, 11, 0.2);
+}
+
+/* Animación de entrada para botones flotantes */
+@keyframes float-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-btn {
+  animation: float-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.floating-whatsapp {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.floating-appointment {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+/* Responsive para botones flotantes */
+@media (max-width: 600px) {
+  .floating-actions {
+    bottom: 90px;
+    right: 15px;
+    gap: 12px;
+  }
+  
+  .floating-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .floating-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .floating-actions {
+    bottom: 85px;
+    right: 12px;
+    gap: 10px;
+  }
+  
+  .floating-btn {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .floating-btn svg {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 /* Header parallax */
@@ -161,14 +278,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, var(--color-primary) 60%, var(--color-bg) 120%);
-  box-shadow: var(--shadow-neumorph);
+  background: linear-gradient(180deg, var(--color-primary) 0%, #3B82F6 100%);
+  box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
+  will-change: transform;
+  contain: layout style paint;
 }
 .header-content {
   text-align: center;
-  color: var(--color-text-dark);
+  color: #FFFFFF;
   z-index: 2;
   position: relative;
 }
@@ -183,21 +302,24 @@ body {
   margin-bottom: 1.5em;
 }
 .btn-primary {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  color: #fff;
+  background: linear-gradient(90deg, var(--color-accent), #FBBF24);
+  color: #FFFFFF;
   border: none;
   border-radius: 32px;
   padding: 0.8em 2.2em;
   font-size: 1.1rem;
   font-weight: 600;
-  box-shadow: var(--shadow-gold);
+  box-shadow: var(--shadow-accent);
   cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
   text-decoration: none;
+  will-change: transform;
+  contain: layout style paint;
 }
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.04);
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+  background: linear-gradient(90deg, #FBBF24, var(--color-accent));
+  box-shadow: 0 15px 30px rgba(245, 158, 11, 0.35);
 }
 
 /* Animación de partículas en el header */
@@ -213,10 +335,12 @@ body {
 
 .particle {
   position: absolute;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 193, 7, 0.4) 70%, transparent 100%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.9) 0%, rgba(251, 191, 36, 0.5) 70%, transparent 100%);
   border-radius: 50%;
   pointer-events: none;
   animation: float 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  contain: layout style paint;
 }
 
 .particle:nth-child(1) {
@@ -360,7 +484,7 @@ body {
 .main-nav {
   width: 100%;
   background: var(--color-card);
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -370,6 +494,7 @@ body {
   padding: 0 1em;
   box-sizing: border-box;
   overflow-x: hidden;
+  contain: layout style paint;
 }
 
 .nav-toggle {
@@ -512,7 +637,6 @@ body {
 .section {
   padding: 64px 0 48px 0;
   background: var(--color-bg);
-  transition: background var(--transition);
   width: 100%;
   overflow-x: hidden;
 }
@@ -543,7 +667,7 @@ body {
   margin: 0 auto;
   max-width: 420px;
   border-radius: 24px;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-md);
 }
 
 /* Características */
@@ -557,7 +681,7 @@ body {
 }
 .features-list li {
   background: var(--color-card);
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   border-radius: 18px;
   padding: 1.2em 2em;
   display: flex;
@@ -568,10 +692,12 @@ body {
   min-width: 220px;
   margin-bottom: 1em;
   transition: transform var(--transition), box-shadow var(--transition);
+  will-change: transform;
+  contain: layout style paint;
 }
 .features-list li:hover {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px var(--color-secondary);
+  box-shadow: var(--shadow-md);
 }
 .features-list img {
   width: 32px;
@@ -586,7 +712,7 @@ body {
   height: 0;
   overflow: hidden;
   border-radius: 18px;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-md);
 }
 .video-wrapper iframe {
   position: absolute;
@@ -605,7 +731,7 @@ body {
 }
 .requisito-item {
   background: var(--color-card);
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   border-radius: 18px;
   padding: 1.0em;
   display: flex;
@@ -614,10 +740,12 @@ body {
   max-width: 220px;
   min-width: 220px;
   transition: transform var(--transition), box-shadow var(--transition);
+  will-change: transform;
+  contain: layout style paint;
 }
 .requisito-item:hover {
   transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 32px var(--color-accent);
+  box-shadow: var(--shadow-accent);
 }
 .requisito-item img {
   width: 20%;
@@ -625,69 +753,11 @@ body {
   border-radius: 12px;
   margin-bottom: 1em;
 }
-.github-link {
-  display: inline-block;
-  margin-top: 0.7em;
-  color: var(--color-primary);
-  text-decoration: underline;
-  font-size: 0.98rem;
-  transition: color var(--transition);
-}
-.github-link:hover {
-  color: var(--color-secondary);
-}
-
-/* Giros aceptados timeline */
-.timeline {
-  position: relative;
-  margin: 2em 0 0 0;
-  padding-left: 32px;
-}
-.timeline:before {
-  content: '';
-  position: absolute;
-  left: 16px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-  border-radius: 2px;
-}
-.timeline-item {
-  position: relative;
-  margin-bottom: 2.5em;
-  animation: timeline-fadein 1s ease;
-}
-@keyframes timeline-fadein {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.timeline-dot {
-  position: absolute;
-  left: -2px;
-  top: 0.5em;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, var(--color-accent), var(--color-primary));
-  border-radius: 50%;
-  box-shadow: 0 2px 8px var(--color-secondary);
-  z-index: 1;
-}
-.timeline-content {
-  background: var(--color-card);
-  box-shadow: var(--shadow-neumorph);
-  border-radius: 14px;
-  padding: 1em 1.5em;
-  margin-left: 36px;
-  color: var(--color-text);
-  transition: background var(--transition);
-}
-
 /* Ubicación */
 .ubicacion .map-wrapper {
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-md);
   margin-bottom: 1em;
 }
 
@@ -702,17 +772,17 @@ body {
   background: var(--color-card);
   padding: 1em 1.5em;
   border-radius: 15px;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   margin: 0;
   font-weight: 500;
   letter-spacing: 0.5px;
   line-height: 1.4;
-  transition: background var(--transition), transform var(--transition);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .direccion:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(58, 123, 213, 0.15);
+  box-shadow: var(--shadow-md);
 }
 .btn-secondary {
   background: var(--color-card);
@@ -722,13 +792,14 @@ body {
   padding: 0.7em 2em;
   font-size: 1.05rem;
   font-weight: 600;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), border var(--transition);
+  transition: background var(--transition), color var(--transition), border var(--transition), box-shadow var(--transition);
 }
 .btn-secondary:hover {
   background: var(--color-primary);
-  color: #fff;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-md);
 }
 
 /* Contacto */
@@ -754,16 +825,18 @@ body {
   padding: 1em 2em;
   font-size: 1.05rem;
   font-weight: 600;
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   cursor: pointer;
   text-decoration: none;
-  transition: background var(--transition), color var(--transition), transform var(--transition);
+  transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
   min-width: 200px;
   width: 200px;
   height: 60px;
   white-space: nowrap;
   box-sizing: border-box;
   flex: 0 0 auto;
+  will-change: transform;
+  contain: layout style paint;
 }
 .contact-btn img {
   width: 28px;
@@ -772,14 +845,15 @@ body {
 }
 .contact-btn:hover {
   background: var(--color-primary);
-  color: #fff;
+  color: #FFFFFF;
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Estilo específico para el botón de agendar cita */
 .contact-btn.calendar {
-  background: linear-gradient(135deg, var(--color-accent), #ff6b35);
-  color: #fff;
+  background: linear-gradient(135deg, var(--color-accent), #FBBF24);
+  color: #FFFFFF;
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
@@ -801,17 +875,17 @@ body {
 }
 
 .contact-btn.calendar:hover {
-  background: linear-gradient(135deg, #ff6b35, var(--color-accent));
-  color: #fff;
+  background: linear-gradient(135deg, #FBBF24, var(--color-accent));
+  color: #FFFFFF;
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(249, 178, 52, 0.4);
+  box-shadow: var(--shadow-accent);
 }
 
 /* Footer */
 .main-footer {
   background: var(--color-card);
   color: var(--color-text);
-  box-shadow: var(--shadow-neumorph);
+  box-shadow: var(--shadow-soft);
   padding: 2.5em 0 1.5em 0;
 }
 
@@ -880,12 +954,12 @@ body {
 }
 
 /* Animaciones de scroll y microinteracciones */
-.section, .features-list li, .requisito-item, .timeline-item, .contact-btn, .btn-primary, .btn-secondary {
+.section, .features-list li, .requisito-item, .contact-btn, .btn-primary, .btn-secondary {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
 }
-.section.visible, .features-list li.visible, .requisito-item.visible, .timeline-item.visible, .contact-btn.visible, .btn-primary.visible, .btn-secondary.visible {
+.section.visible, .features-list li.visible, .requisito-item.visible, .contact-btn.visible, .btn-primary.visible, .btn-secondary.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -937,13 +1011,6 @@ body {
     padding: 1em;
     margin: 0 0 1em 0;
   }
-  .timeline-content {
-    padding: 0.7em;
-    margin-left: 30px;
-  }
-  .timeline {
-    padding-left: 25px;
-  }
   .direccion {
     font-size: 1rem;
     padding: 0.8em 1em;
@@ -970,7 +1037,7 @@ body {
     justify-content: center;
   }
   .contact-btn.calendar {
-    background: linear-gradient(135deg, var(--color-accent), #ff6b35);
+    background: linear-gradient(135deg, var(--color-accent), #FBBF24);
     font-weight: 700;
   }
   .contact-btn.calendar:hover {
@@ -986,11 +1053,6 @@ body {
     width: 40px;
     height: 40px;
     font-size: 1.3rem;
-  }
-  .theme-toggle {
-    left: 12px;
-    width: 40px;
-    height: 40px;
   }
 }
 
@@ -1015,15 +1077,6 @@ body {
     width: 85vw;
     max-width: none;
     padding: 4em 1em 2em 1em;
-  }
-  
-  .timeline {
-    padding-left: 20px;
-  }
-  
-  .timeline-content {
-    margin-left: 25px;
-    font-size: 0.9rem;
   }
   
   .direccion {
@@ -1056,7 +1109,7 @@ body {
   }
   
   .contact-btn.calendar {
-    background: linear-gradient(135deg, var(--color-accent), #ff6b35);
+    background: linear-gradient(135deg, var(--color-accent), #FBBF24);
     font-weight: 700;
     min-height: 55px;
   }

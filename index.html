@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Local en renta CDMX, Coyoacan, avenida de los paches">
   <title>Local en renta</title>
+  <!-- Preload critical assets -->
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="js/main.js" as="script">
+  <link rel="preconnect" href="https://www.youtube.com">
+  <link rel="preconnect" href="https://www.google.com">
+  <link rel="dns-prefetch" href="https://calendly.com">
+  <link rel="dns-prefetch" href="https://wa.me">
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="assets/icons/favicon.png" type="image/svg+xml">
 </head>
@@ -15,18 +23,29 @@
     <span class="loader-text">Cargando...</span>
   </div>
 
-  <!-- Botón modo oscuro/claro -->
-  <button id="theme-toggle" class="theme-toggle" aria-label="Alternar modo claro/oscuro">
-    <span class="icon-moon"></span>
-    <span class="icon-sun"></span>
-  </button>
-
   <!-- Botón volver arriba -->
   <button id="back-to-top" class="back-to-top" aria-label="Volver arriba">
     <span>&uarr;</span>
   </button>
 
-  <header class="main-header parallax">
+  <!-- Botones flotantes de acción -->
+  <div class="floating-actions">
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/5215639672481" target="_blank" rel="noopener noreferrer" class="floating-btn floating-whatsapp" aria-label="Contactar por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/>
+      </svg>
+    </a>
+    
+    <!-- Botón de Citas -->
+    <a href="https://calendly.com/carlosrangel-tech/cita-para-local" target="_blank" rel="noopener noreferrer" class="floating-btn floating-appointment" aria-label="Agendar cita">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z" fill="currentColor"/>
+      </svg>
+    </a>
+  </div>
+
+  <header class="main-header">
     <div class="particles-container">
       <div class="particle"></div>
       <div class="particle"></div>
@@ -74,7 +93,7 @@
       <div class="container">
         <h2>Sobre la propiedad</h2>
         <p class="desc">Pon tu marca frente a todos: este local comercial de 21 m² está justo sobre avenida, con excelente visibilidad y fácil acceso para clientes.</p>
-        <img src="assets\img\20250913_113336.jpg" alt="Vista del espacio en renta" class="img-sobre">
+        <img src="assets\img\20250913_113336.jpg" alt="Vista del espacio en renta" class="img-sobre" loading="lazy" width="420" height="auto">
       </div>
     </section>
 
@@ -83,13 +102,13 @@
       <div class="container">
         <h2>Características</h2>
         <ul class="features-list">
-          <li><img src="assets/icons/area.svg" alt="Área"> 21m² de área</li>
-          <li><img src="assets/icons/avenida.png" alt="Estacionamiento"> Sobre avenida</li>
-          <li><img src="assets/icons/train.png" alt="WiFi"> Cerca del Metrobús Cafetales</li>
-          <li><img src="assets/icons/agua.png" alt="Seguridad"> Servicio de Agua</li>
-          <li><img src="assets/icons/flash.png" alt="Salas"> Servicio de energía eléctrica</li>
-          <li><img src="assets/icons/apreton-de-manos.png" alt="Salas"> Trato directo</li>
-          <li><img src="assets/icons/contrato.png" alt="Salas"> Contrato por un año o seis meses, tú decides</li>
+          <li><img src="assets/icons/area.svg" alt="Área" loading="lazy" width="32" height="32"> 21m² de área</li>
+          <li><img src="assets/icons/avenida.png" alt="Estacionamiento" loading="lazy" width="32" height="32"> Sobre avenida</li>
+          <li><img src="assets/icons/train.png" alt="WiFi" loading="lazy" width="32" height="32"> Cerca del Metrobús Cafetales</li>
+          <li><img src="assets/icons/agua.png" alt="Seguridad" loading="lazy" width="32" height="32"> Servicio de Agua</li>
+          <li><img src="assets/icons/flash.png" alt="Salas" loading="lazy" width="32" height="32"> Servicio de energía eléctrica</li>
+          <li><img src="assets/icons/apreton-de-manos.png" alt="Salas" loading="lazy" width="32" height="32"> Trato directo</li>
+          <li><img src="assets/icons/contrato.png" alt="Salas" loading="lazy" width="32" height="32"> El contrato es por un año</li>
         </ul>
       </div>
     </section>
@@ -99,7 +118,7 @@
       <div class="container">
         <h2>Recorrido virtual</h2>
         <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/gcZC54vWmME?si=N3Ho9934da29tTgf" title="Recorrido del espacio en renta" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/gcZC54vWmME?si=N3Ho9934da29tTgf" title="Recorrido del espacio en renta" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
     </section>
@@ -110,42 +129,42 @@
         <h2>Requisitos</h2>
         <div class="requisitos-list">
           <div class="requisito-item">
-            <img src="assets/img/INE.png" alt="Identificación oficial vigente">
+            <img src="assets/img/INE.png" alt="Identificación oficial vigente" loading="lazy" width="180" height="auto">
             <div>
               <h3>Identificación oficial vigente</h3>
               <p>INE o pasaporte vigente del solicitante.</p>
             </div>
           </div>
           <div class="requisito-item">
-            <img src="assets/img/recibo.png" alt="Comprobante de domicilio">
+            <img src="assets/img/recibo.png" alt="Comprobante de domicilio" loading="lazy" width="180" height="auto">
             <div>
               <h3>Comprobante de domicilio</h3>
               <p>Un documento que acredite tu domicilio actual (no mayor a 3 meses). Si rentas donde vives, deberas agregar copia de tu contrato de arrendamiento vigente.</p>
             </div>
           </div>
           <div class="requisito-item">
-            <img src="assets/img/CURP.png" alt="CURP">
+            <img src="assets/img/CURP.png" alt="CURP" loading="lazy" width="180" height="auto">
             <div>
               <h3>CURP</h3>
               <p>Clave Única de Registro de Población actualizada.</p>
             </div>
           </div>
           <div class="requisito-item">
-            <img src="assets/img/SAT.png" alt="Constancia de situación fiscal">
+            <img src="assets/img/SAT.png" alt="Constancia de situación fiscal" loading="lazy" width="180" height="auto">
             <div>
               <h3>Constancia de situación fiscal</h3>
               <p>Constancia de situación fiscal actualizada (SAT).</p>
             </div>
           </div>
           <div class="requisito-item">
-            <img src="assets/img/aval.png" alt="Aval o fiador solidario">
+            <img src="assets/img/aval.png" alt="Aval o fiador solidario" loading="lazy" width="180" height="auto">
             <div>
               <h3>Aval o fiador solidario</h3>
               <p>Con domicilio en la CDMX y propietario de un bien inmueble libre de gravamen, identificado con INE y comprobante de domicilio</p>
             </div>
           </div>
           <div class="requisito-item">
-            <img src="assets/img/antecedentes-penales.png" alt="No antecedentes penales">
+            <img src="assets/img/antecedentes-penales.png" alt="No antecedentes penales" loading="lazy" width="180" height="auto">
             <div>
               <h3>No contar con antecedentes penales</h3>
               <p>Ni el arrendatario potencial ni su aval deberán contar con antecedentes penales de ningún tipo. Y no se aceptarán personas registradas en listas oficiales de agresores de cualquier índole. Asimismo, el arrendatario potencial y su aval no deberán estar en Buró de Crédito.</p>
@@ -174,8 +193,8 @@
       <div class="container">
         <h2>Precio</h2>
         <ul class="features-list">
-          <li><img src="assets/icons/pago.png" alt="Área"> RENTA: $8000 por mes</li>
-          <li><img src="assets/icons/donacion.png" alt="Estacionamiento"> DEPOSITO: $8000</li>
+          <li><img src="assets/icons/pago.png" alt="Área" loading="lazy" width="32" height="32"> RENTA: $8000 por mes</li>
+          <li><img src="assets/icons/donacion.png" alt="Estacionamiento" loading="lazy" width="32" height="32"> DEPOSITO: $8000</li>
         </ul>
       </div>
     </section>
@@ -185,9 +204,9 @@
       <div class="container">
         <h2>Contacto</h2>
         <div class="contacto-list">
-          <a href="https://calendly.com/crangeltech/" target="_blank" class="contact-btn calendar"><img src="assets/icons/calendar.svg" alt="Agendar Cita"> Agendar Cita</a>
-          <a href="https://wa.me/5215639672481" target="_blank" class="contact-btn whatsapp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp"> WhatsApp</a>
-          <a href="mailto:carlosrangel.tech+arrendamiento@gmail.com" class="contact-btn email"><img src="assets/icons/email.svg" alt="Email"> Email</a>
+          <a href="https://calendly.com/carlosrangel-tech/cita-para-local" target="_blank" class="contact-btn calendar"><img src="assets/icons/calendar.svg" alt="Agendar Cita" loading="lazy" width="28" height="28"> Agendar Cita</a>
+          <a href="https://wa.me/5215639672481" target="_blank" class="contact-btn whatsapp"><img src="assets/icons/whatsapp.svg" alt="WhatsApp" loading="lazy" width="28" height="28"> WhatsApp</a>
+          <a href="mailto:carlosrangel.tech+arrendamiento@gmail.com" class="contact-btn email"><img src="assets/icons/email.svg" alt="Email" loading="lazy" width="28" height="28"> Email</a>
         </div>
       </div>
     </section>

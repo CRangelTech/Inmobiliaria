@@ -1,35 +1,58 @@
-// Loader animado
+// Utilidades de rendimiento
+const throttle = (func, delay) => {
+  let lastCall = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
+};
+
+const debounce = (func, delay) => {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+};
+
+// Loader animado - optimizado
 window.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
     loader.style.opacity = '0';
-    setTimeout(() => loader.style.display = 'none', 500);
+    setTimeout(() => {
+      loader.style.display = 'none';
+      loader.remove(); // Eliminar del DOM para mejor rendimiento
+    }, 500);
   }, 1200);
 });
 
-// Modo claro/oscuro
-const themeToggle = document.getElementById('theme-toggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const setTheme = (theme) => {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-};
-const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
-setTheme(currentTheme);
-themeToggle.addEventListener('click', () => {
-  const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  setTheme(newTheme);
-});
-
-// Botón volver arriba
+// Botón volver arriba - optimizado con throttle y transform
 const backToTop = document.getElementById('back-to-top');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
+let lastScrollY = 0;
+let ticking = false;
+
+const updateBackToTop = () => {
+  const scrollY = window.scrollY;
+  if (scrollY > 300 && !backToTop.classList.contains('show')) {
     backToTop.classList.add('show');
-  } else {
+  } else if (scrollY <= 300 && backToTop.classList.contains('show')) {
     backToTop.classList.remove('show');
   }
-});
+  lastScrollY = scrollY;
+  ticking = false;
+};
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(updateBackToTop);
+    ticking = true;
+  }
+}, { passive: true });
+
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
@@ -72,50 +95,99 @@ if (navToggle && navLinksMenu) {
   });
 }
 
-// Scroll suave entre secciones
+// Scroll suave entre secciones - optimizado
 const navLinks = document.querySelectorAll('.main-nav a');
 navLinks.forEach(link => {
   link.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
     if (href.startsWith('#')) {
       e.preventDefault();
-      document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 });
 
-// Animaciones de scroll y microinteracciones
-const revealOnScroll = () => {
-  const revealEls = document.querySelectorAll('.section, .features-list li, .requisito-item, .timeline-item, .contact-btn, .btn-primary, .btn-secondary');
-  const windowHeight = window.innerHeight;
-  revealEls.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < windowHeight - 80) {
-      el.classList.add('visible');
+// Animaciones de scroll - optimizado con IntersectionObserver
+const observerOptions = {
+  root: null,
+  rootMargin: '0px 0px -80px 0px',
+  threshold: 0.1
+};
+
+const revealCallback = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // Dejar de observar una vez visible
     }
   });
 };
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('DOMContentLoaded', revealOnScroll);
 
-// Parallax header
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('.main-header');
+const revealObserver = new IntersectionObserver(revealCallback, observerOptions);
+
+// Observar elementos con lazy reveal
+const observeElements = () => {
+  const revealEls = document.querySelectorAll('.section, .features-list li, .requisito-item, .contact-btn, .btn-primary, .btn-secondary');
+  revealEls.forEach(el => revealObserver.observe(el));
+};
+
+// Ejecutar cuando DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', observeElements);
+} else {
+  observeElements();
+}
+
+// Parallax header - optimizado con throttle y transform
+let parallaxTicking = false;
+const header = document.querySelector('.main-header');
+
+const updateParallax = () => {
   if (header) {
-    header.style.backgroundPositionY = `${window.scrollY * 0.3}px`;
+    const scrollY = window.scrollY;
+    const offset = scrollY * 0.3;
+    header.style.transform = `translateY(${offset}px)`;
   }
-});
+  parallaxTicking = false;
+};
 
-// Descargar PDF
-document.getElementById('download-pdf').addEventListener('click', () => {
-  // Crear un enlace temporal para descargar el PDF
-  const link = document.createElement('a');
-  link.href = 'assets/docs/LocalEnRenta.pdf';
-  link.download = 'LocalEnRenta.pdf'; // Nombre del archivo al descargar
-  link.target = '_blank'; // Abrir en nueva pestaña como respaldo
+window.addEventListener('scroll', () => {
+  if (!parallaxTicking) {
+    window.requestAnimationFrame(updateParallax);
+    parallaxTicking = true;
+  }
+}, { passive: true });
+
+// Descargar PDF - optimizado
+const downloadBtn = document.getElementById('download-pdf');
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = 'assets/docs/LocalEnRenta.pdf';
+    link.download = 'LocalEnRenta.pdf';
+    link.target = '_blank';
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    // Cleanup inmediato
+    setTimeout(() => document.body.removeChild(link), 100);
+  });
+}
+
+// Botones flotantes de acción - optimizado
+document.addEventListener('DOMContentLoaded', () => {
+  const floatingButtons = document.querySelectorAll('.floating-btn');
   
-  // Añadir el enlace al DOM, hacer clic y removerlo
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+  floatingButtons.forEach(button => {
+    // Mejorar accesibilidad con teclado
+    button.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        button.click();
+      }
+    });
+  });
 });
