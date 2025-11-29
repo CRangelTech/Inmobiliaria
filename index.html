@@ -117,8 +117,57 @@
     <section id="video" class="section video">
       <div class="container">
         <h2>Recorrido virtual</h2>
+        
+        <!-- Carrusel de imágenes -->
+        <div class="carousel-container">
+          <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-btn-prev" aria-label="Imagen anterior">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="carousel-track-container">
+              <div class="carousel-track">
+                <div class="carousel-slide active">
+                  <img src="https://res.cloudinary.com/deipr2ev2/image/upload/v1764375504/20251128_173750_dxg6od.jpg" alt="Vista frontal del local" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/deipr2ev2/image/upload/v1764375499/20251128_173758_hutqph.jpg" alt="Interior del local" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/deipr2ev2/image/upload/v1764375112/20251128_173315_kc6zsy.jpg" alt="Espacio amplio" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/deipr2ev2/image/upload/v1764375109/20251128_173329_ftxk45.jpg" alt="Vista lateral" loading="lazy">
+                </div>
+                <div class="carousel-slide">
+                  <img src="https://res.cloudinary.com/deipr2ev2/image/upload/v1764450724/20250913_113729_bf3r7q.jpg" alt="Detalles del local" loading="lazy">
+                </div>
+              </div>
+            </div>
+            
+            <button class="carousel-btn carousel-btn-next" aria-label="Siguiente imagen">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+          
+          <div class="carousel-dots">
+            <button class="carousel-dot active" aria-label="Ir a imagen 1" data-index="0"></button>
+            <button class="carousel-dot" aria-label="Ir a imagen 2" data-index="1"></button>
+            <button class="carousel-dot" aria-label="Ir a imagen 3" data-index="2"></button>
+            <button class="carousel-dot" aria-label="Ir a imagen 4" data-index="3"></button>
+            <button class="carousel-dot" aria-label="Ir a imagen 5" data-index="4"></button>
+          </div>
+        </div>
+        
         <div class="video-wrapper">
-          <iframe src="https://www.youtube.com/embed/gcZC54vWmME?si=N3Ho9934da29tTgf" title="Recorrido del espacio en renta" frameborder="0" allowfullscreen loading="lazy"></iframe>
+          <video id="local-video" class="local-video" muted loop playsinline preload="metadata">
+            <source src="assets/movie/local.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
         </div>
       </div>
     </section>
