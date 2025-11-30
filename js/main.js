@@ -18,7 +18,7 @@ const debounce = (func, delay) => {
   };
 };
 
-// Loader animado - optimizado
+// Loader animado - optimizado para mostrar contenido rápidamente
 window.addEventListener('DOMContentLoaded', () => {
   const loader = document.getElementById('loader');
   setTimeout(() => {
@@ -26,8 +26,8 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       loader.style.display = 'none';
       loader.remove(); // Eliminar del DOM para mejor rendimiento
-    }, 500);
-  }, 1200);
+    }, 300);
+  }, 400); // Reducido a 400ms para mostrar contenido más rápido
 });
 
 // Botón volver arriba - optimizado con throttle y transform
@@ -110,36 +110,8 @@ navLinks.forEach(link => {
   });
 });
 
-// Animaciones de scroll - optimizado con IntersectionObserver
-const observerOptions = {
-  root: null,
-  rootMargin: '0px 0px -80px 0px',
-  threshold: 0.1
-};
-
-const revealCallback = (entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target); // Dejar de observar una vez visible
-    }
-  });
-};
-
-const revealObserver = new IntersectionObserver(revealCallback, observerOptions);
-
-// Observar elementos con lazy reveal
-const observeElements = () => {
-  const revealEls = document.querySelectorAll('.section, .features-list li, .requisito-item, .contact-btn, .btn-primary, .btn-secondary');
-  revealEls.forEach(el => revealObserver.observe(el));
-};
-
-// Ejecutar cuando DOM esté listo
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', observeElements);
-} else {
-  observeElements();
-}
+// Animaciones de scroll eliminadas para mostrar todo el contenido inmediatamente
+// Los usuarios pueden ver toda la página sin necesidad de hacer scroll
 
 // Parallax header - optimizado con throttle y transform
 let parallaxTicking = false;

@@ -209,30 +209,11 @@ body {
   box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4), 0 4px 10px rgba(245, 158, 11, 0.2);
 }
 
-/* Animación de entrada para botones flotantes */
-@keyframes float-in {
-  0% {
-    opacity: 0;
-    transform: translateY(100px) scale(0.5);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
+/* Animación de entrada eliminada - botones visibles desde el inicio */
 
 .floating-btn {
-  animation: float-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-.floating-whatsapp {
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-
-.floating-appointment {
-  animation-delay: 0.2s;
-  opacity: 0;
+  /* Botones visibles inmediatamente */
+  opacity: 1;
 }
 
 /* Responsive para botones flotantes */
@@ -1188,15 +1169,12 @@ body {
   }
 }
 
-/* Animaciones de scroll y microinteracciones */
+/* Animaciones de scroll eliminadas - contenido visible inmediatamente */
 .section, .features-list li, .requisito-item, .contact-btn, .btn-primary, .btn-secondary {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s cubic-bezier(.77,0,.18,1), transform 0.7s cubic-bezier(.77,0,.18,1);
-}
-.section.visible, .features-list li.visible, .requisito-item.visible, .contact-btn.visible, .btn-primary.visible, .btn-secondary.visible {
   opacity: 1;
   transform: translateY(0);
+  /* Transiciones suaves solo para interacciones, no para revelado */
+  transition: transform 0.3s cubic-bezier(.77,0,.18,1), box-shadow 0.3s cubic-bezier(.77,0,.18,1);
 }
 
 /* Responsive */
